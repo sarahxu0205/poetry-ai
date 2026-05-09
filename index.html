@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>诗中天地：与诗人共品唐诗</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Ma+Shan+Zheng&family=Noto+Serif+SC:wght@200;300;400;500;600;700;900&family=ZCOOL+XiaoWei&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- 背景装饰层 -->
+    <div class="bg-layer">
+        <div class="ink-wash ink-wash-1"></div>
+        <div class="ink-wash ink-wash-2"></div>
+        <div class="ink-wash ink-wash-3"></div>
+        <div class="floating-particle" id="particles"></div>
+        <svg class="mountain-bg" viewBox="0 0 1440 400" preserveAspectRatio="none">
+            <path d="M0,400 L0,280 Q120,180 240,250 Q360,120 480,200 Q600,80 720,180 Q840,60 960,160 Q1080,100 1200,200 Q1320,140 1440,220 L1440,400 Z" fill="rgba(40,40,50,0.15)"/>
+            <path d="M0,400 L0,320 Q180,240 360,300 Q540,200 720,280 Q900,180 1080,260 Q1260,200 1440,300 L1440,400 Z" fill="rgba(40,40,50,0.08)"/>
+        </svg>
+    </div>
+
+    <!-- 主容器 -->
+    <div class="app-container">
+        <!-- 顶部导航 -->
+        <header class="app-header">
+            <div class="header-left">
+                <div class="logo">
+                    <span class="logo-icon">📜</span>
+                    <h1 class="logo-text">诗中天地</h1>
+                </div>
+                <span class="logo-subtitle">与诗人共品唐诗</span>
+            </div>
+            <nav class="header-nav">
+                <button class="nav-btn active" data-page="home">
+                    <span class="nav-icon">🏠</span>
+                    <span>首页</span>
+                </button>
+                <button class="nav-btn" data-page="poets">
+                    <span class="nav-icon">👤</span>
+                    <span>诗人</span>
+                </button>
+                <button class="nav-btn" data-page="poetry-meeting">
+                    <span class="nav-icon">🏮</span>
+                    <span>诗会</span>
+                </button>
+                <button class="nav-btn" data-page="creation">
+                    <span class="nav-icon">✍️</span>
+                    <span>创作</span>
+                </button>
+            </nav>
+            <div class="header-right">
+                <button class="settings-btn" id="settingsBtn" title="设置">
+                    ⚙️
+                </button>
+            </div>
+        </header>
+
+        <!-- 页面内容区 -->
+        <main class="main-content">
+            <!-- 首页 -->
+            <section class="page active" id="page-home">
+                <div class="home-hero">
+                    <div class="hero-text">
+                        <h2 class="hero-title">
+                            <span class="title-char" style="--delay:0">诗</span>
+                            <span class="title-char" style="--delay:1">中</span>
+                            <span class="title-char" style="--delay:2">天</span>
+                            <span class="title-char" style="--delay:3">地</span>
+                        </h2>
+                        <p class="hero-desc">穿越千年时光，与李白对饮、与杜甫论诗<br>在AI构建的唐诗世界中，感受诗人的灵魂与诗意</p>
+                        <div class="hero-actions">
+                            <button class="btn btn-primary btn-large" onclick="navigateTo('poetry-meeting')">
+                                <span>🏮</span> 进入诗会
+                            </button>
+                            <button class="btn btn-secondary btn-large" onclick="navigateTo('creation')">
+                                <span>✍️</span> 开始创作
+                            </button>
+                            <button class="btn btn-ghost btn-large" onclick="navigateTo('my-works')" id="myWorksBtn">
+                                <span>📜</span> 我的创作
+                            </button>
+                        </div>
+                    </div>
+                    <div class="hero-scroll">
+                        <div class="scroll-paper">
+                            <div class="scroll-content">
+                                <p class="scroll-poem">春江潮水连海平<br>海上明月共潮生<br>滟滟随波千万里<br>何处春江无月明</p>
+                                <p class="scroll-author">—— 张若虚《春江花月夜》</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 功能介绍 -->
+                <div class="features-section">
+                    <h3 class="section-title">
+                        <span class="title-decoration left"></span>
+                        两大核心体验
+                        <span class="title-decoration right"></span>
+                    </h3>
+                    <div class="features-grid">
+                        <div class="feature-card" onclick="navigateTo('poetry-meeting')">
+                            <div class="feature-icon">🏮</div>
+                            <h4>诗会模式</h4>
+                            <p>选择多位诗人，进入模拟的唐代诗会场景。AI诗人围绕一首唐诗展开讨论，从意境、格律、情感等不同角度解读诗歌之美。</p>
+                            <div class="feature-poets">
+                                <img class="mini-avatar" src="images/libai.png" title="李白" alt="李白">
+                                <img class="mini-avatar" src="images/dufu.png" title="杜甫" alt="杜甫">
+                                <img class="mini-avatar" src="images/wangwei.png" title="王维" alt="王维">
+                                <img class="mini-avatar" src="images/baijuyi.png" title="白居易" alt="白居易">
+                                <span class="poet-count">等10位诗人可选</span>
+                            </div>
+                        </div>
+                        <div class="feature-card" onclick="navigateTo('creation')">
+                            <div class="feature-icon">✍️</div>
+                            <h4>创作模式</h4>
+                            <p>与AI诗人一起创作诗歌。说出你的想法，诗人会帮你润色，讲解创作思路，教你炼字、对仗，体验诗歌创作的乐趣。</p>
+                            <div class="feature-poets">
+                                <img class="mini-avatar" src="images/libai.png" title="李白" alt="李白">
+                                <img class="mini-avatar" src="images/baijuyi.png" title="白居易" alt="白居易">
+                                <img class="mini-avatar" src="images/lishangyin.png" title="李商隐" alt="李商隐">
+                                <span class="poet-count">等10位诗人可选</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 诗人展示 -->
+                <div class="poets-preview">
+                    <h3 class="section-title">
+                        <span class="title-decoration left"></span>
+                        诗人群像
+                        <span class="title-decoration right"></span>
+                    </h3>
+                    <div class="poets-carousel" id="poetsCarousel">
+                        <!-- 由JS动态生成 -->
+                    </div>
+                </div>
+            </section>
+
+            <!-- 诗人详情页 -->
+            <section class="page" id="page-poets">
+                <div class="poets-page">
+                    <h2 class="page-title">诗人群像</h2>
+                    <p class="page-subtitle">点击诗人卡片，了解他们的生平与诗风</p>
+                    <div class="poets-grid" id="poetsGrid">
+                        <!-- 由JS动态生成 -->
+                    </div>
+                </div>
+                <!-- 诗人详情弹窗 -->
+                <div class="modal-overlay" id="poetModal">
+                    <div class="modal-content poet-detail-modal">
+                        <button class="modal-close" onclick="closeModal('poetModal')">×</button>
+                        <div class="poet-detail" id="poetDetail">
+                            <!-- 由JS动态填充 -->
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 诗会模式页 -->
+            <section class="page" id="page-poetry-meeting">
+                <div class="meeting-container">
+                    <!-- 诗会设置面板 -->
+                    <div class="meeting-setup" id="meetingSetup">
+                        <h2 class="page-title">🏮 诗会模式</h2>
+                        <p class="page-subtitle">选择诗人与诗词，开启一场跨越千年的诗会</p>
+                        
+                        <div class="setup-section">
+                            <h3 class="setup-label">选择讨论诗词</h3>
+                            <div class="poem-selector" id="poemSelector">
+                                <!-- 由JS动态生成 -->
+                            </div>
+                        </div>
+
+                        <div class="setup-section">
+                            <h3 class="setup-label">邀请诗人（选择2-4位）</h3>
+                            <div class="poet-selector" id="poetSelector">
+                                <!-- 由JS动态生成 -->
+                            </div>
+                        </div>
+
+                        <div class="setup-section">
+                            <h3 class="setup-label">讨论主题</h3>
+                            <div class="topic-options" id="topicOptions">
+                                <button class="topic-btn active" data-topic="综合赏析">综合赏析</button>
+                                <button class="topic-btn" data-topic="意境分析">意境分析</button>
+                                <button class="topic-btn" data-topic="格律探讨">格律探讨</button>
+                                <button class="topic-btn" data-topic="情感解读">情感解读</button>
+                                <button class="topic-btn" data-topic="比较品评">比较品评</button>
+                            </div>
+                        </div>
+
+                        <button class="btn btn-primary btn-large meeting-start-btn" id="startMeetingBtn" disabled>
+                            🏮 开启诗会
+                        </button>
+                    </div>
+
+                    <!-- 诗会进行中 -->
+                    <div class="meeting-active hidden" id="meetingActive">
+                        <div class="meeting-header">
+                            <button class="btn btn-ghost" onclick="exitMeeting()">← 返回</button>
+                            <h3 class="meeting-poem-title" id="meetingPoemTitle"></h3>
+                            <span class="meeting-status" id="meetingStatus">🏮 讨论中...</span>
+                        </div>
+
+                        <div class="meeting-scene">
+                            <div class="meeting-table">
+                                <div class="meeting-seats" id="meetingSeats">
+                                    <!-- 由JS动态生成 -->
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="meeting-chat" id="meetingChat">
+                            <!-- 对话消息 -->
+                        </div>
+
+                        <div class="meeting-input">
+                            <button class="btn btn-ghost btn-sm" id="continueBtn" onclick="meeting.continueDiscussion()" disabled>🏮 继续讨论</button>
+                            <button class="btn btn-ghost btn-sm" onclick="if(confirm('确认结束诗会吗？'))exitMeeting()">结束诗会</button>
+                            <input type="text" class="chat-input" id="meetingInput" placeholder="说出你的想法..." maxlength="200">
+                            <button class="btn btn-primary" id="meetingSendBtn" onclick="sendMeetingMessage()">发送</button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 创作模式页 -->
+            <section class="page" id="page-creation">
+                <div class="creation-container">
+                    <!-- 创作设置 -->
+                    <div class="creation-setup" id="creationSetup">
+                        <h2 class="page-title">✍️ 创作模式</h2>
+                        <p class="page-subtitle">选择一位诗人，与他一同挥毫泼墨</p>
+
+                        <div class="setup-section">
+                            <h3 class="setup-label">选择合作诗人</h3>
+                            <div class="creation-poet-selector" id="creationPoetSelector">
+                                <!-- 由JS动态生成 -->
+                            </div>
+                        </div>
+
+                        <div class="setup-section">
+                            <h3 class="setup-label">诗歌体裁</h3>
+                            <div class="form-options">
+                                <button class="form-btn active" data-form="五言绝句">五言绝句</button>
+                                <button class="form-btn" data-form="七言绝句">七言绝句</button>
+                                <button class="form-btn" data-form="五言律诗">五言律诗</button>
+                                <button class="form-btn" data-form="七言律诗">七言律诗</button>
+                                <button class="form-btn" data-form="自由创作">自由创作</button>
+                            </div>
+                        </div>
+
+                        <div class="setup-section">
+                            <h3 class="setup-label">创作主题（可选）</h3>
+                            <input type="text" class="text-input" id="creationTopic" placeholder="例如：西湖春雨、秋思、送别..." maxlength="50">
+                        </div>
+
+                        <button class="btn btn-primary btn-large" id="startCreationBtn" disabled>
+                            ✍️ 开始创作
+                        </button>
+                    </div>
+
+                    <!-- 创作进行中 -->
+                    <div class="creation-active hidden" id="creationActive">
+                        <div class="creation-header">
+                            <button class="btn btn-ghost" onclick="exitCreation()">← 返回</button>
+                            <h3 class="creation-title" id="creationTitle"></h3>
+                            <div class="creation-info">
+                                <span class="creation-form-tag" id="creationFormTag"></span>
+                            </div>
+                        </div>
+
+                        <div class="creation-workspace">
+                            <!-- 诗人面板 -->
+                            <div class="creation-poet-panel" id="creationPoetPanel">
+                                <!-- 由JS动态生成 -->
+                            </div>
+
+                            <!-- 创作区域 -->
+                            <div class="creation-editor">
+                                <!-- 当前诗作卡片（整合到对话流顶部） -->
+                                <div class="poem-card-inline" id="poemCardInline">
+                                    <div class="poem-card-inline-header">
+                                        <span class="poem-card-inline-title">📝 当前诗作</span>
+                                        <div class="poem-card-inline-actions">
+                                            <button class="poem-copy-btn" id="poemCopyBtn" onclick="creation.copyPoem()" style="display:none">📋 复制</button>
+                                            <button class="poem-end-btn" id="poemEndBtn" onclick="creation.endCreation()" style="display:none">✨ 完成创作</button>
+                                            <span class="poem-card-inline-hint">点击采纳喜欢的诗句，加入你的诗作</span>
+                                        </div>
+                                    </div>
+                                    <div class="poem-card-inline-body" id="poemCardBody">
+                                        <div class="poem-card-inline-empty" id="poemCardEmpty">
+                                            描述你想要的场景，诗人会为你创作诗句
+                                        </div>
+                                        <div class="poem-card-inline-content hidden" id="poemCardContent"></div>
+                                    </div>
+                                </div>
+
+                                <!-- 对话区域 -->
+                                <div class="creation-dialogue" id="creationDialogue">
+                                    <!-- 对话消息 -->
+                                </div>
+
+                                <div class="creation-input-bar">
+                                    <input type="text" class="chat-input" id="creationInput" placeholder="描述你想要的场景或主题..." maxlength="300">
+                                    <button class="btn btn-primary" onclick="sendCreationMessage()">发送</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 我的创作页 -->
+            <section class="page" id="page-my-works">
+                <div class="my-works-container">
+                    <div class="my-works-header">
+                        <button class="btn btn-ghost" onclick="navigateTo('home')">← 返回</button>
+                        <h2 class="page-title" style="margin:0">📜 我的创作</h2>
+                        <div style="width:60px"></div>
+                    </div>
+                    <div id="worksContent">
+                        <!-- 由JS动态渲染 -->
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <!-- 设置弹窗 -->
+    <div class="modal-overlay" id="settingsModal">
+        <div class="modal-content settings-modal">
+            <button class="modal-close" onclick="closeModal('settingsModal')">×</button>
+            <h3 class="modal-title">⚙️ 设置</h3>
+            <div class="settings-body">
+                <div class="setting-item">
+                    <label class="setting-label">AI 服务</label>
+                    <select class="setting-select" id="aiService">
+                        <option value="deepseek">DeepSeek</option>
+                        <option value="mock">模拟模式（无需API）</option>
+                    </select>
+                </div>
+                <div class="setting-item" id="apiKeySetting">
+                    <label class="setting-label">API Key</label>
+                    <input type="password" class="setting-input" id="apiKeyInput" placeholder="请输入您的 DeepSeek API Key">
+                    <button class="btn btn-sm btn-secondary" onclick="testApiKey()">测试连接</button>
+                </div>
+                <div class="setting-actions">
+                    <button class="btn btn-primary" onclick="saveSettings()">保存设置</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 加载遮罩 -->
+    <div class="loading-overlay" id="loadingOverlay">
+        <div class="loading-content">
+            <div class="loading-brush">
+                <svg viewBox="0 0 100 100" class="brush-svg">
+                    <circle cx="50" cy="50" r="40" stroke="currentColor" stroke-width="2" fill="none" stroke-dasharray="251" stroke-dashoffset="251">
+                        <animate attributeName="stroke-dashoffset" from="251" to="0" dur="2s" repeatCount="indefinite"/>
+                    </circle>
+                </svg>
+                <span class="loading-text">研墨提笔中...</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Toast 通知 -->
+    <div class="toast-container" id="toastContainer"></div>
+
+    <script src="data/poets.js"></script>
+    <script src="data/poems.js"></script>
+    <script src="js/ai-service.js"></script>
+    <script src="js/ui.js"></script>
+    <script src="js/poetry-meeting.js"></script>
+    <script src="js/creation-mode.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>
