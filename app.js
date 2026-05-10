@@ -16,6 +16,9 @@ document.addEventListener('DOMContentLoaded', () => {
     // 初始化创作模式
     creation.init();
 
+    // 初始化与诗人聊天模式
+    chatWithPoet.init();
+
     // 检查是否有已保存的诗作，显示首页入口
     const savedPoems = JSON.parse(localStorage.getItem('myPoems') || '[]');
     const myWorksBtn = document.getElementById('myWorksBtn');
@@ -37,7 +40,7 @@ document.addEventListener('DOMContentLoaded', () => {
     document.querySelectorAll('.modal-overlay').forEach(overlay => {
         overlay.addEventListener('click', (e) => {
             if (e.target === overlay) {
-                overlay.classList.remove('active');
+                closeModal(overlay.id);
             }
         });
     });
@@ -46,7 +49,7 @@ document.addEventListener('DOMContentLoaded', () => {
     document.addEventListener('keydown', (e) => {
         if (e.key === 'Escape') {
             document.querySelectorAll('.modal-overlay.active').forEach(overlay => {
-                overlay.classList.remove('active');
+                closeModal(overlay.id);
             });
         }
     });
@@ -62,6 +65,10 @@ document.addEventListener('DOMContentLoaded', () => {
     window.exitCreation = () => creation.exitCreation();
     window.sendCreationMessage = () => creation.sendMessage();
     window.deletePoem = deletePoem;
+    window.startChatWithPoet = (poetId) => {
+        closeModal('poetModal');
+        chatWithPoet.start(poetId);
+    };
 
     console.log('📜 诗中天地：与诗人共品唐诗 - 已启动');
 });

@@ -327,6 +327,9 @@ function showPoetDetail(poetId) {
                 </div>
             `).join('')}
         </div>
+        <div class="detail-actions" style="text-align:center; padding:var(--space-md) 0;">
+            <button class="btn btn-primary" onclick="startChatWithPoet('${poet.id}')">💬 与${poet.name}聊天</button>
+        </div>
     `;
     
     // 重置弹窗滚动位置

@@ -223,10 +223,20 @@ ${this.topic ? '• 欢迎对方，询问具体想表达什么情感或场景' :
         const poet = this.selectedPoet;
         const currentPoem = this.poemLines.join('\n');
 
+        // 体裁格律说明
+        const formRules = {
+            '五言绝句': '共4句，每句5个字',
+            '七言绝句': '共4句，每句7个字',
+            '五言律诗': '共8句，每句5个字',
+            '七言律诗': '共8句，每句7个字',
+            '自由创作': '不限句数和字数'
+        };
+        const formRule = formRules[this.selectedForm] || '不限';
+
         const systemPrompt = `${poet.systemPrompt}
 
 【场景】你正在帮助一位诗歌爱好者创作诗歌。他会描述想要的场景或主题，你来为他创作诗句。
-【体裁】${this.selectedForm}
+【体裁】${this.selectedForm}（${formRule}）
 ${this.topic ? `【主题】${this.topic}` : ''}
 【当前诗作】
 ${currentPoem || '（尚未开始写）'}
@@ -236,11 +246,12 @@ ${currentPoem || '（尚未开始写）'}
 请以${poet.name}的身份回应：
 1. 理解用户描述的场景或主题
 2. 为用户创作2-4句贴合场景的诗句，每句用「」包裹
-3. 简要解释诗句的意境或用词
-4. 语气亲切鼓励，像一位耐心的老师
-5. 控制在100-150字
+3. 每句诗必须严格符合体裁格律要求（${formRule}）
+4. 简要解释诗句的意境或用词
+5. 语气亲切鼓励，像一位耐心的老师
+6. 控制在100-150字
 
-注意：必须用「」包裹每一句诗，这样用户才能选择采纳。`;
+注意：必须用「」包裹每一句诗，这样用户才能选择采纳。诗句字数必须符合格律！`;
 
         // 显示输入指示器
         const dialogue = document.getElementById('creationDialogue');

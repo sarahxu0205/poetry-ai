@@ -315,6 +315,25 @@
                 </div>
             </section>
 
+            <!-- 与诗人聊天页 -->
+            <section class="page" id="page-chat-poet">
+                <div class="creation-workspace">
+                    <div class="creation-poet-panel" id="chatPoetPanel"></div>
+                    <div class="creation-editor">
+                        <div class="creation-header">
+                            <button class="btn btn-ghost" onclick="chatWithPoet.exitChat()">← 返回</button>
+                            <h3 class="creation-title" id="chatPoetTitle"></h3>
+                            <div style="width:60px"></div>
+                        </div>
+                        <div class="creation-dialogue" id="chatPoetDialogue"></div>
+                        <div class="creation-input-bar">
+                            <input type="text" class="chat-input" id="chatPoetInput" placeholder="和诗人聊点什么..." maxlength="300">
+                            <button class="btn btn-primary" onclick="chatWithPoet.sendMessage()">发送</button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
             <!-- 我的创作页 -->
             <section class="page" id="page-my-works">
                 <div class="my-works-container">
@@ -379,6 +398,7 @@
     <script src="js/ui.js"></script>
     <script src="js/poetry-meeting.js"></script>
     <script src="js/creation-mode.js"></script>
+    <script src="js/chat-mode.js"></script>
     <script src="app.js"></script>
 </body>
 </html>
